@@ -8,10 +8,10 @@ from functools import reduce
 import pandas as pd
 
 
-class SalesOfDiesel:
+class SalesOfDerivativesFuels:
     def __init__(self):
         self.spark = SparkSession.builder \
-                .appName("SalesOfDiesel") \
+                .appName("SalesOfDerivativesFuels") \
                 .config("spark.master", "local") \
                 .getOrCreate()
 
@@ -56,6 +56,6 @@ class SalesOfDiesel:
         fuelsDF.write.partitionBy('month').parquet(self.path_export )
 
 
-client = SalesOfDiesel()
+client = SalesOfDerivativesFuels()
 fullDF = client.process_spark()
 client.generate_output(fullDF)
